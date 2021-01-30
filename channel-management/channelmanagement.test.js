@@ -1,5 +1,5 @@
 const channelManagement = require('./registeredChannels');
-const testConfiguration = {"token":"ODA0MzExNzAzMDc1NDIyMjI5.YBKfpQ.kjklMnV8_KrlH9rm6nynkouD29k","command":".","allowed":[]};
+const testConfiguration = require('../data/testConfiguration.json');
 
 function getTestConfiguration() {
 
