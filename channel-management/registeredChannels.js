@@ -1,31 +1,29 @@
 const configurationFile = require('../data/config');
-let configuration = configurationFile.config;
 
-let addAllowedChannelToConfiguration = function (newChannelId) {
+let addAllowedChannelToConfiguration = function (newChannelId, config) {
 
-    if(channelIsRegistered(newChannelId)) {
+    if(channelIsRegistered(newChannelId, config) || !channelIdIsNotNull(newChannelId)) {
 
         return 'Channel is already registered';
     } else {
 
-        addTheNewChannelToTheConfiguration(newChannelId);
-        return 'Channel succesfully added to allowed list';
+        return addTheNewChannelToTheConfiguration(newChannelId, config);
     }
 }
 
-let removeAllowedChanelFromConfiguration = function (deleteChannelId) {
+let removeAllowedChannelFromConfiguration = function (deleteChannelId, config) {
 
-    if(channelIsRegistered(deleteChannelId)) {
-
-        return removeChannelFromConfiguration(getIndexOfRegisteredChannel(deleteChannelId));
+    if(channelIsRegistered(deleteChannelId, config) && channelIdIsNotNull(deleteChannelId)) {
+        return removeChannelFromConfiguration(getIndexOfRegisteredChannel(deleteChannelId, config), config);
     } else {
 
         return 'Channel was not registered and therefore could not be removed from the Registration!'
     }
 }
 
-let getIndexOfRegisteredChannel = function (channelId) {
+let getIndexOfRegisteredChannel = function (channelId, config) {
 
+    let configuration = configurationFile.getConfiguration(config);
     let searchIndex = 0;
 
     while(configuration.allowed[searchIndex] !== channelId) {
@@ -36,28 +34,41 @@ let getIndexOfRegisteredChannel = function (channelId) {
     return searchIndex;
 }
 
-let removeChannelFromConfiguration = function (arrayIndex) {
+let removeChannelFromConfiguration = function (arrayIndex, config) {
 
-    for(let currentIndex = arrayIndex; currentIndex < getAllRegisteredChannels().length -1; currentIndex++) {
+    let configuration = configurationFile.getConfiguration(config);
 
-        getAllRegisteredChannels()[currentIndex] = getAllRegisteredChannels()[currentIndex+1];
+    for(let currentIndex = arrayIndex; currentIndex < getAllRegisteredChannels(configuration).length -1; currentIndex++) {
+
+        getAllRegisteredChannels(configuration)[currentIndex] = getAllRegisteredChannels(configuration)[currentIndex+1];
     }
 
-    getAllRegisteredChannels().pop();
-    configurationFile.updateConfig();
+    getAllRegisteredChannels(configuration).pop();
+    configurationFile.updateConfig(configuration);
 
-    return 'Channel succesfully removed from Allowed List';
+    return 'Channel successfully removed from Allowed List';
 }
 
-let addTheNewChannelToTheConfiguration = function (newChannelId) {
+let addTheNewChannelToTheConfiguration = function (newChannelId, config) {
+
+    let configuration = configurationFile.getConfiguration(config);
 
     configuration.allowed.push(newChannelId);
-    configurationFile.updateConfig();
+    configurationFile.updateConfig(configuration);
+
+    return 'Channel successfully added to allowed list';
 }
 
-let channelIsRegistered = function (testChannelId) {
+let channelIdIsNotNull = function (testChannelId) {
 
-    for(let channelId of getAllRegisteredChannels()) {
+    return testChannelId != null;
+}
+
+let channelIsRegistered = function (testChannelId, config) {
+
+    let configuration = configurationFile.getConfiguration(config);
+
+    for(let channelId of getAllRegisteredChannels(configuration)) {
 
         if(channelId === testChannelId) {
 
@@ -68,7 +79,9 @@ let channelIsRegistered = function (testChannelId) {
     return false;
 }
 
-let getAllRegisteredChannels = function () {
+let getAllRegisteredChannels = function (config) {
+
+    let configuration = configurationFile.getConfiguration(config);
 
     return configuration.allowed;
 }
@@ -76,4 +89,4 @@ let getAllRegisteredChannels = function () {
 module.exports.addAllowedChannelToConfig = addAllowedChannelToConfiguration;
 module.exports.isChannelRegistered = channelIsRegistered;
 module.exports.getAllRegisteredChannels = getAllRegisteredChannels;
-module.exports.removeAllowedChannelFromConfiguration = removeAllowedChanelFromConfiguration;
+module.exports.removeAllowedChannelFromConfiguration = removeAllowedChannelFromConfiguration;
