@@ -2,8 +2,8 @@ const Discord = require('discord.js');
 const client = new Discord.Client();
 
 const configurationFile = require('./data/config');
-const commandIndicator = configurationFile.config.command;
-const botToken = configurationFile.config.token;
+const commandIndicator = configurationFile.getConfiguration().command;
+const botToken = configurationFile.getConfiguration().token;
 
 const channelManager = require('./channel-management/registeredChannels');
 

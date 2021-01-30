@@ -1,12 +1,28 @@
 const fs = require('fs');
-let configuration = require('./configuration.json');
+let configurationFile = require('./configuration.json');
 
-function updateConfig() {
+function updateConfig(config) {
 
-    fs.writeFile('./data/configuration.json', JSON.stringify(configuration), () => {
-        console.log('Updated Config.');
-    });
+    if(config === configurationFile) {
+
+        fs.writeFile('./data/configuration.json', JSON.stringify(configurationFile), () => {
+            console.log('Updated Config.');
+        });
+    } else {
+
+        console.log('TestConfig should have been Updated')
+    }
 }
 
-module.exports.config = configuration;
+let getConfiguration = function (config) {
+
+    if(config === undefined) {
+
+        config = configurationFile;
+    }
+
+    return config;
+}
+
+module.exports.getConfiguration = getConfiguration;
 module.exports.updateConfig = updateConfig;
