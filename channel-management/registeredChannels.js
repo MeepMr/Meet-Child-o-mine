@@ -1,11 +1,5 @@
 const configurationFile = require('../data/config');
 
-/**
- *
- * @param newChannelId {string}
- * @param [config] {configurationFile} - Configuration File
- * @returns {string}
- */
 let addAllowedChannelToConfiguration = function (newChannelId, config) {
 
     if(channelIsRegistered(newChannelId, config) || !channelIdIsNotNull(newChannelId)) {
@@ -17,12 +11,6 @@ let addAllowedChannelToConfiguration = function (newChannelId, config) {
     }
 }
 
-/**
- *
- * @param deleteChannelId {string}
- * @param [config] {configurationFile} - Configuration File
- * @returns {string}
- */
 let removeAllowedChannelFromConfiguration = function (deleteChannelId, config) {
 
     if(channelIsRegistered(deleteChannelId, config) && channelIdIsNotNull(deleteChannelId)) {
@@ -33,12 +21,6 @@ let removeAllowedChannelFromConfiguration = function (deleteChannelId, config) {
     }
 }
 
-/**
- *
- * @param channelId {string}
- * @param [config] {configurationFile} - Configuration File
- * @returns {number}
- */
 let getIndexOfRegisteredChannel = function (channelId, config) {
 
     let configuration = configurationFile.getConfiguration(config);
@@ -52,12 +34,6 @@ let getIndexOfRegisteredChannel = function (channelId, config) {
     return searchIndex;
 }
 
-/**
- *
- * @param arrayIndex {number}
- * @param [config] {configurationFile} - Configuration File
- * @returns {string}
- */
 let removeChannelFromConfiguration = function (arrayIndex, config) {
 
     let configuration = configurationFile.getConfiguration(config);
@@ -73,12 +49,6 @@ let removeChannelFromConfiguration = function (arrayIndex, config) {
     return 'Channel successfully removed from Allowed List';
 }
 
-/**
- *
- * @param newChannelId {string}
- * @param [config] {configurationFile} - Configuration File
- * @returns {string}
- */
 let addTheNewChannelToTheConfiguration = function (newChannelId, config) {
 
     let configuration = configurationFile.getConfiguration(config);
@@ -89,22 +59,11 @@ let addTheNewChannelToTheConfiguration = function (newChannelId, config) {
     return 'Channel successfully added to allowed list';
 }
 
-/**
- *
- * @param testChannelId {string}
- * @returns {boolean}
- */
 let channelIdIsNotNull = function (testChannelId) {
 
     return testChannelId != null;
 }
 
-/**
- *
- * @param testChannelId {string}
- * @param [config] {configurationFile} - Configuration File
- * @returns {boolean}
- */
 let channelIsRegistered = function (testChannelId, config) {
 
     let configuration = configurationFile.getConfiguration(config);
@@ -120,11 +79,6 @@ let channelIsRegistered = function (testChannelId, config) {
     return false;
 }
 
-/**
- *
- * @param [config] {configurationFile} - Configuration File
- * @returns {string[]}
- */
 let getAllRegisteredChannels = function (config) {
 
     let configuration = configurationFile.getConfiguration(config);
