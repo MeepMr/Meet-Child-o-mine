@@ -2,8 +2,8 @@ const configurationFile = require('../data/config');
 
 /**
  *
- * @param newChannelId {string}
- * @param [config] {configurationFile} - Configuration File
+ * @param {string} newChannelId
+ * @param {configurationFile} [config] - Configuration File
  * @returns {string}
  */
 let addAllowedChannelToConfiguration = function (newChannelId, config) {
@@ -19,8 +19,8 @@ let addAllowedChannelToConfiguration = function (newChannelId, config) {
 
 /**
  *
- * @param deleteChannelId {string}
- * @param [config] {configurationFile} - Configuration File
+ * @param {string} deleteChannelId
+ * @param {configurationFile} [config] - Configuration File
  * @returns {string}
  */
 let removeAllowedChannelFromConfiguration = function (deleteChannelId, config) {
@@ -35,8 +35,8 @@ let removeAllowedChannelFromConfiguration = function (deleteChannelId, config) {
 
 /**
  *
- * @param channelId {string}
- * @param [config] {configurationFile} - Configuration File
+ * @param {string} channelId
+ * @param {configurationFile} [config] - Configuration File
  * @returns {number}
  */
 let getIndexOfRegisteredChannel = function (channelId, config) {
@@ -54,8 +54,8 @@ let getIndexOfRegisteredChannel = function (channelId, config) {
 
 /**
  *
- * @param arrayIndex {number}
- * @param [config] {configurationFile} - Configuration File
+ * @param {number} arrayIndex
+ * @param {configurationFile} [config] - Configuration File
  * @returns {string}
  */
 let removeChannelFromConfiguration = function (arrayIndex, config) {
@@ -75,8 +75,8 @@ let removeChannelFromConfiguration = function (arrayIndex, config) {
 
 /**
  *
- * @param newChannelId {string}
- * @param [config] {configurationFile} - Configuration File
+ * @param {string} newChannelId
+ * @param {configurationFile} [config] - Configuration File
  * @returns {string}
  */
 let addTheNewChannelToTheConfiguration = function (newChannelId, config) {
@@ -91,7 +91,7 @@ let addTheNewChannelToTheConfiguration = function (newChannelId, config) {
 
 /**
  *
- * @param testChannelId {string}
+ * @param {string} testChannelId
  * @returns {boolean}
  */
 let channelIdIsNotNull = function (testChannelId) {
@@ -101,8 +101,8 @@ let channelIdIsNotNull = function (testChannelId) {
 
 /**
  *
- * @param testChannelId {string}
- * @param [config] {configurationFile} - Configuration File
+ * @param {string} testChannelId
+ * @param {configurationFile} [config] - Configuration File
  * @returns {boolean}
  */
 let channelIsRegistered = function (testChannelId, config) {
@@ -122,7 +122,7 @@ let channelIsRegistered = function (testChannelId, config) {
 
 /**
  *
- * @param [config] {configurationFile} - Configuration File
+ * @param {configurationFile} [config] - Configuration File
  * @returns {string[]}
  */
 let getAllRegisteredChannels = function (config) {

@@ -3,7 +3,7 @@ let configurationFile = require('./configuration.json');
 
 /**
  *
- * @param [config] {configurationFile} - Configuration File
+ * @param {configurationFile} [config] - Configuration File
  */
 function updateConfig(config) {
 
@@ -20,7 +20,7 @@ function updateConfig(config) {
 
 /**
  *
- * @param [config] {configurationFile} - Configuration File
+ * @param {configurationFile} [config] - Configuration File
  * @returns {{token: string, command: string, allowed: string[]}}
  */
 let getConfiguration = function (config) {
