@@ -1,10 +1,6 @@
 const fs = require('fs');
 let configurationFile = require('./configuration.json');
 
-/**
- *
- * @param [config] {configurationFile} - Configuration File
- */
 function updateConfig(config) {
 
     if(config === configurationFile) {
@@ -18,11 +14,6 @@ function updateConfig(config) {
     }
 }
 
-/**
- *
- * @param [config] {configurationFile} - Configuration File
- * @returns {{token: string, command: string, allowed: string[]}}
- */
 let getConfiguration = function (config) {
 
     if(config === undefined) {
