@@ -17,6 +17,7 @@ beforeEach(() => {
 
 test('Register a NULL-Channel', () => {
 
+    // noinspection JSCheckFunctionSignatures
     responseString = channelManagement.addChannelToConfig(null, getTestConfiguration());
     expect(responseString).toBe('Channel is already registered');
 });
@@ -30,6 +31,7 @@ test('Register a new Channel',() => {
 
 test('unregister a NULL-Channel', () => {
 
+    // noinspection JSCheckFunctionSignatures
     responseString = channelManagement.removeChannelFromConfig(null, getTestConfiguration());
     expect(responseString).toBe('Channel was not registered and therefore could not be removed from the Registration!');
 });
@@ -58,6 +60,7 @@ test('get all registered Channels', () => {
 
 test('is NULL-Channel registered', () => {
 
+    // noinspection JSCheckFunctionSignatures
     responseBoolean = channelManagement.isChannelRegistered(null, getTestConfiguration());
     expect(responseBoolean).toBe(false);
 });

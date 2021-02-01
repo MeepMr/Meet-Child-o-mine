@@ -9,33 +9,27 @@ beforeEach(() => {
 
     responseBoolean = undefined;
     responseString = undefined;
+    // noinspection JSCheckFunctionSignatures
     testMessage = new Discord.Message();
     testMessage.author = 'TestAuthor';
 });
 
-test('Find not existing Command', () => {
-
-    responseBoolean = commandManager.commandExists('notExistingCommand');
-    expect(responseBoolean).toBe(false);
-});
-
-test('Find existing Command', () => {
-
-    responseBoolean = commandManager.commandExists('template-command');
-    expect(responseBoolean).toBe(true);
-});
-
 test('Execute Command without arguments', () => {
 
-    responseString = commandManager.executeCommand('template-command', generateTestMessage());
-    expect(responseString).toBe('Received from Mr-Meep [GER] with Arguments undefined');
+    // noinspection JSCheckFunctionSignatures
+    commandManager.executeCommand('template-command', generateTestMessage()).then(responseString => {
+
+        expect(responseString).toBe('Received from Mr-Meep [GER] with Arguments undefined');
+    });
 });
 
 test('Execute Command with arguments', () => {
 
-    let args = ["test1", "test2", "JSrulesTheWorld"];
-    responseString = commandManager.executeCommand('template-command', generateTestMessage(), args);
-    expect(responseString).toBe('Received from Mr-Meep [GER] with Arguments test1,test2,JSrulesTheWorld');
+    let args = ["test1", "test2", "JSRulesTheWorld"];
+    commandManager.executeCommand('template-command', generateTestMessage(), args).then(responseString => {
+
+        expect(responseString).toBe('Received from Mr-Meep [GER] with Arguments test1,test2,JSRulesTheWorld');
+    });
 });
 
 /**
@@ -44,7 +38,9 @@ test('Execute Command with arguments', () => {
  */
 let generateTestMessage = function () {
 
+    // noinspection JSCheckFunctionSignatures
     let message = new Discord.Message();
+    // noinspection JSValidateTypes
     message.author = {
         id: '294128831021842432',
         system: null,

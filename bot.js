@@ -22,9 +22,12 @@ client.on('message', msg => {
 
         commandManager.executeCommand(cmd, msg, args).then((returnString) => {
 
-            console.log(`Catched Command ${cmd} with the Arguments ${args}`);
-            let responseMessage = messageManager.generateMessage(returnString);
-            messageManager.sendMessage(responseMessage, msg.channel);
+            console.log(`Caught Command ${cmd} with the Arguments ${args}`);
+
+            messageManager.sendResponseMessage(returnString, cmd, msg.channel).then(returnString => {
+
+                console.log(returnString)
+            });
         }).catch((errorString) => {
 
             console.log(errorString);

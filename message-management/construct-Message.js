@@ -2,19 +2,27 @@ const Discord = require('discord.js')
 
 /**
  *
- * @param text {string}
- * @returns {module:"discord.js".MessageEmbed}
+ * @param {{ "Title":  string, "Content": string, "Author": string, "Color": string }} messageTemplate
+ * @returns {Promise<module:"discord.js".MessageEmbed>}
  */
-let constructMessage = function (text) {
+let constructMessage = function (messageTemplate) {
 
-    let embeddedMessage = new Discord.MessageEmbed()
-    embeddedMessage.setColor('GREEN')
-    embeddedMessage.setTitle(text);
-    embeddedMessage.setAuthor('Justin Klein');
-    embeddedMessage.setURL('https://www.duckduckgo.com');
-    embeddedMessage.setFooter('Have a nice evening! 😜👍🏻')
+    return new Promise((resolve, reject) => {
 
-    return embeddedMessage;
+        if(messageTemplate !== undefined) {
+            let embeddedMessage = new Discord.MessageEmbed()
+            embeddedMessage.setColor(messageTemplate.Color)
+            embeddedMessage.setTitle(messageTemplate.Title);
+            embeddedMessage.setAuthor(messageTemplate.Author);
+            embeddedMessage.setDescription(messageTemplate.Content);
+            embeddedMessage.setFooter('Have a nice evening! 😜👍🏻')
+
+            resolve(embeddedMessage);
+        } else {
+
+            reject('No message Template provided');
+        }
+    })
 }
 
 module.exports.generateMessage = constructMessage;

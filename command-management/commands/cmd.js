@@ -1,3 +1,5 @@
+let config = require('../../data/config');
+
 /**
  *
  * @param {module:"discord.js".Message} message
