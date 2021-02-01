@@ -2,7 +2,6 @@ const Discord = require('discord.js');
 const client = new Discord.Client();
 
 const configurationFile = require('./data/config');
-const botToken = configurationFile.getConfiguration().token;
 
 const messageManager = require('./message-management/Message-Manager');
 const commandManager = require('./command-management/Command-Manager')
@@ -32,7 +31,7 @@ client.on('message', msg => {
     }
 });
 
-client.login(botToken).then((registeredToken) => {
+client.login(configurationFile.getConfiguration().token).then((registeredToken) => {
 
     console.log(`Logged in using Bot-Token ${registeredToken.substring(0,10)}...`);
 });
