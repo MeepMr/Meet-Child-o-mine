@@ -2,7 +2,6 @@ const Discord = require('discord.js');
 const client = new Discord.Client();
 
 const configurationFile = require('./data/config');
-const commandIndicator = configurationFile.getConfiguration().command;
 const botToken = configurationFile.getConfiguration().token;
 
 const messageManager = require('./message-management/Message-Manager');
@@ -13,6 +12,8 @@ client.on('ready', () => {
 });
 
 client.on('message', msg => {
+
+    let commandIndicator = configurationFile.getConfiguration().command;
 
     if(msg.author.username !== client.user.username && msg.content.startsWith(commandIndicator)) {
 
