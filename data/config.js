@@ -3,9 +3,9 @@ let configurationFile = require('./configuration.json');
 
 /**
  *
- * @param [config] {configurationFile} - Configuration File
+ * @param {configurationFile} [config] - Configuration File
  */
-function updateConfig(config) {
+let updateConfig = function (config) {
 
     if(config === configurationFile) {
 
@@ -20,7 +20,7 @@ function updateConfig(config) {
 
 /**
  *
- * @param [config] {configurationFile} - Configuration File
+ * @param {configurationFile} [config] - Configuration File
  * @returns {{token: string, command: string, allowed: string[]}}
  */
 let getConfiguration = function (config) {
@@ -33,5 +33,17 @@ let getConfiguration = function (config) {
     return config;
 }
 
+/**
+ *
+ * @param {string} newIndicator
+ */
+let changeCommandIndicator = function (newIndicator) {
+
+    getConfiguration().command = newIndicator;
+    updateConfig(getConfiguration());
+    return `The new Command-Indicator ist now ${getConfiguration().command}`;
+}
+
 module.exports.getConfiguration = getConfiguration;
 module.exports.updateConfig = updateConfig;
+module.exports.changeCommandIndicator = changeCommandIndicator;
