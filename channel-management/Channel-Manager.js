@@ -1,11 +1,10 @@
-const Discord = require('discord.js');
-const registerChannels = require('./registeredChannels')
+const registerChannels = require('./registered-Channels');
 
 /**
  *
  * @param {string} channelId
- * @param {Discord.Client} client
- * @returns {Discord.Channel}
+ * @param {module:"discord.js".Client} client
+ * @returns {module:"discord.js".Channel}
  */
 let findChannel = function (channelId, client) {
 

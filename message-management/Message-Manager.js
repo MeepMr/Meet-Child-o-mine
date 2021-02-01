@@ -1,5 +1,26 @@
-const constructMessage = require('./constructMessage');
-const sendMessage = require('./sendMessage');
+const constructMessage = require('./construct-Message');
+const messageTemplate = require('./messageTemplate');
+const sendMessage = require('./send-Message');
 
-module.exports.generateMessage = constructMessage.generateMessage;
-module.exports.sendMessage = sendMessage.sendMessage;
+/**
+ *
+ * @param {string} responseString
+ * @param {string} command
+ * @param {module:"discord.js".TextChannel} channel
+ * @returns {Promise<string>}
+ */
+let sendResponseMessage = function (responseString, command, channel) {
+
+    return new Promise(resolve => {
+
+        let template = new messageTemplate.messageTemplate(`Response for ${command}`, 'Meet Child \'o Mine','YELLOW', responseString)
+        constructMessage.generateMessage(template).then(message => {
+
+            // noinspection JSCheckFunctionSignatures
+            sendMessage.sendMessage(message, channel);
+            resolve(`Message for command ${command} send successfully`);
+        });
+    });
+}
+
+module.exports.sendResponseMessage = sendResponseMessage;

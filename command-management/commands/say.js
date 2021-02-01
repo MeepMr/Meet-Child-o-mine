@@ -1,15 +1,15 @@
-let Discord;
-Discord = require('discord.js');
-
 /**
  *
- * @param {Discord.Message} message
+ * @param {module:"discord.js".Message} message
  * @param {string[]} [args]
- * @returns {string}
+ * @returns {Promise<string>}
  */
 let execute = function (message, args) {
 
-    return args.join(' ');
+    return new Promise((resolve => {
+
+        resolve (args.join(' '));
+    }));
 }
 
 module.exports.execute = execute;

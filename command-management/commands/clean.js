@@ -1,22 +1,24 @@
-let Discord;
-Discord = require('discord.js');
 
 /**
  *
- * @param {Discord.Message} message
- * @returns {string}
+ * @param {module:"discord.js".Message} message
+ * @returns {Promise<string>}
  */
 let execute = function (message) {
 
-    message.channel.messages.fetch({limit: 100}).then(messages => {
+    return new Promise(resolve => {
 
-        message.channel.fetch().then(c => {
+        message.channel.messages.fetch({limit: 100}).then(messages => {
 
-            c.bulkDelete(messages).then();
-        });
-    })
+            message.channel.fetch().then(c => {
 
-    return `I deleted some Messages on behalf of ${message.author.username}`;
+                c.bulkDelete(messages).then(count => {
+
+                    resolve(`I deleted ${count.size} Messages on behalf of ${message.author.username}`)
+                });
+            });
+        })
+    });
 }
 
 module.exports.execute = execute;

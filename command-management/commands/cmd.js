@@ -1,16 +1,17 @@
-const config = require('../../data/config');
-let Discord;
-Discord = require('discord.js');
+let config = require('../../data/config');
 
 /**
  *
- * @param {Discord.Message} message
+ * @param {module:"discord.js".Message} message
  * @param {string[]} args
- * @returns {string}
+ * @returns {Promise<string>}
  */
 let execute = function (message, args) {
 
-    return config.changeCommandIndicator(args [0]);
+    return new Promise((resolve) => {
+
+        resolve(config.changeCommandIndicator(args [0]));
+    });
 }
 
 module.exports.execute = execute;

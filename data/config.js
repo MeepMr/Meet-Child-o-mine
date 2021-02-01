@@ -20,7 +20,7 @@ let updateConfig = function (config) {
 
 /**
  *
- * @param {configurationFile} [config] - Configuration File
+ * @param {{token: string, command: string, allowed: string[]}} [config] - Configuration File
  * @returns {{token: string, command: string, allowed: string[]}}
  */
 let getConfiguration = function (config) {

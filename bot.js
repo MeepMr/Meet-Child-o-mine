@@ -2,7 +2,6 @@ const Discord = require('discord.js');
 const client = new Discord.Client();
 
 const configurationFile = require('./data/config');
-const botToken = configurationFile.getConfiguration().token;
 
 const messageManager = require('./message-management/Message-Manager');
 const commandManager = require('./command-management/Command-Manager')
@@ -21,18 +20,22 @@ client.on('message', msg => {
         let args = messageContent.split(' ');
         let cmd = args.shift();
 
-        if(commandManager.commandExists(cmd)) {
+        commandManager.executeCommand(cmd, msg, args).then((returnString) => {
 
-            console.log(`Catched Command ${cmd} with the Arguments ${args}`)
+            console.log(`Caught Command ${cmd} with the Arguments ${args}`);
 
-            let response = commandManager.executeCommand(cmd, msg, args);
-            let responseMessage = messageManager.generateMessage(response);
-            messageManager.sendMessage(responseMessage, msg.channel);
-        }
+            messageManager.sendResponseMessage(returnString, cmd, msg.channel).then(returnString => {
+
+                console.log(returnString)
+            });
+        }).catch((errorString) => {
+
+            console.log(errorString);
+        })
     }
 });
 
-client.login(botToken).then((registeredToken) => {
+client.login(configurationFile.getConfiguration().token).then((registeredToken) => {
 
     console.log(`Logged in using Bot-Token ${registeredToken.substring(0,10)}...`);
 });
