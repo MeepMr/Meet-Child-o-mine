@@ -1,17 +1,13 @@
-const fs = require('fs');
-let Discord;
-Discord = require('discord.js');
-
 /**
  *
  * @param {string} command
- * @param {Discord.Message} message
- * @param {string[]} arguments
+ * @param {module:"discord.js".Message} message
+ * @param {string[]} args
  * @returns {string}
  */
-let executeCommand = function (command, message, arguments) {
+let executeCommand = function (command, message, args) {
 
-    return require(`./commands/${command}`).execute(message, arguments);
+    return require(`./commands/${command}`).execute(message, args);
 }
 
 /**

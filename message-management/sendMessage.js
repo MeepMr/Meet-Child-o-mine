@@ -1,8 +1,7 @@
-
 /**
  *
- * @param message {Message}
- * @param channel {Channel}
+ * @param message {module:"discord.js".Message}
+ * @param channel {module:"discord.js".Channel}
  */
 let sendMessage = function (message, channel) {
 

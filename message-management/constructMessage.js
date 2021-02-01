@@ -3,7 +3,7 @@ const Discord = require('discord.js')
 /**
  *
  * @param text {string}
- * @returns {MessageEmbed}
+ * @returns {module:"discord.js".MessageEmbed}
  */
 let constructMessage = function (text) {
 
