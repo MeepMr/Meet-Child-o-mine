@@ -16,7 +16,7 @@ beforeEach(() => {
 })
 
 test('Register a NULL-Channel', () => {
-
+  
     responseString = channelManagement.addChannelToConfig(null, getTestConfiguration());
     expect(responseString).toBe('Channel is already registered');
 });
@@ -37,6 +37,7 @@ test('unregister a NULL-Channel', () => {
 test('Remove not registered Channel', () => {
 
     getTestConfiguration().allowed = ["1234", "123456789", "5555"];
+  
     responseString = channelManagement.removeChannelFromConfig("123456", getTestConfiguration());
     expect(responseString).toBe('Channel was not registered and therefore could not be removed from the Registration!');
     expect(getTestConfiguration().allowed).toStrictEqual(["1234", "123456789", "5555"]);
@@ -45,6 +46,7 @@ test('Remove not registered Channel', () => {
 test('unregister a Channel', () => {
 
     getTestConfiguration().allowed = ["1234", "123456789", "5555"];
+
     responseString = channelManagement.removeChannelFromConfig("123456789", getTestConfiguration());
     expect(responseString).toBe('Channel successfully removed from Allowed List');
     expect(getTestConfiguration().allowed).toStrictEqual(["1234", "5555"]);
@@ -71,6 +73,7 @@ test('no Channel is registered', () => {
 test('channel is not registered', () => {
 
     getTestConfiguration().allowed = ["1234956789"];
+  
     responseBoolean = channelManagement.isChannelRegistered("1234567")
     expect(responseBoolean).toBe(false);
 });
@@ -78,6 +81,7 @@ test('channel is not registered', () => {
 test('channel is Registered', () => {
 
     getTestConfiguration().allowed = ["123456789", "123456"];
+  
     responseBoolean = channelManagement.isChannelRegistered("123456789", getTestConfiguration());
     expect(responseBoolean).toBe(true);
 });
