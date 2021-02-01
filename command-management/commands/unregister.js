@@ -3,11 +3,14 @@ const channelManager = require('../../channel-management/Channel-Manager');
 /**
  *
  * @param {module:"discord.js".Message} message
- * @returns {string}
+ * @returns {Promise<string>}
  */
 let execute = function (message) {
 
-    return channelManager.removeChannelFromConfig(message.channel.id);
+    return new Promise((resolve => {
+
+        resolve(channelManager.removeChannelFromConfig(message.channel.id));
+    }));
 }
 
 module.exports.execute = execute;

@@ -5,22 +5,22 @@ const fs = require('fs');
  * @param {string} command
  * @param {module:"discord.js".Message} message
  * @param {string[]} args
- * @returns {string}
+ * @returns {Promise<string>}
  */
 let executeCommand = function (command, message, args) {
 
-    return require(`./commands/${command}`).execute(message, args);
+    return new Promise((resolve, reject) => {
+        if(fs.existsSync(`./command-management/commands/${command}.js`)) {
+
+            require(`./commands/${command}`).execute(message, args).then((returnString) => {
+
+                resolve(returnString);
+            });
+        } else {
+
+            reject ('Command is not available in your Region');
+        }
+    });
 }
 
-/**
- *
- * @param {string} command
- * @return {boolean}
- */
-let existsCommand = function (command) {
-
-    return fs.existsSync(`./command-management/commands/${command}.js`);
-}
-
-module.exports.commandExists = existsCommand;
 module.exports.executeCommand = executeCommand;

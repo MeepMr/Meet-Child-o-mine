@@ -20,14 +20,15 @@ client.on('message', msg => {
         let args = messageContent.split(' ');
         let cmd = args.shift();
 
-        if(commandManager.commandExists(cmd)) {
+        commandManager.executeCommand(cmd, msg, args).then((returnString) => {
 
-            console.log(`Catched Command ${cmd} with the Arguments ${args}`)
-
-            let response = commandManager.executeCommand(cmd, msg, args);
-            let responseMessage = messageManager.generateMessage(response);
+            console.log(`Catched Command ${cmd} with the Arguments ${args}`);
+            let responseMessage = messageManager.generateMessage(returnString);
             messageManager.sendMessage(responseMessage, msg.channel);
-        }
+        }).catch((errorString) => {
+
+            console.log(errorString);
+        })
     }
 });
 

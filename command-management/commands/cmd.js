@@ -2,11 +2,14 @@
  *
  * @param {module:"discord.js".Message} message
  * @param {string[]} args
- * @returns {string}
+ * @returns {Promise<string>}
  */
 let execute = function (message, args) {
 
-    return config.changeCommandIndicator(args [0]);
+    return new Promise((resolve) => {
+
+        resolve(config.changeCommandIndicator(args [0]));
+    });
 }
 
 module.exports.execute = execute;
