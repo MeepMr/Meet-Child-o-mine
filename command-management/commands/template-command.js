@@ -1,4 +1,5 @@
-const Discord = require('discord.js');
+let Discord;
+Discord = require('discord.js');
 
 /**
  *
@@ -8,7 +9,7 @@ const Discord = require('discord.js');
  */
 let execute = function (message, args) {
 
-    return 'return-string'
+    return `Received from ${message.author.username} with args ${args}`
 }
 
 module.exports.execute = execute;

@@ -1,4 +1,5 @@
-const Discord = require('discord.js');
+let Discord;
+Discord = require('discord.js');
 
 /**
  *

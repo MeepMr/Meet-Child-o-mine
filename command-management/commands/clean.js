@@ -1,12 +1,12 @@
-const Discord = require('discord.js');
+let Discord;
+Discord = require('discord.js');
 
 /**
  *
  * @param {Discord.Message} message
- * @param {string[]} [args]
  * @returns {string}
  */
-let execute = function (message, args) {
+let execute = function (message) {
 
     message.channel.messages.fetch({limit: 100}).then(messages => {
 
