@@ -1,6 +1,3 @@
-let Discord;
-Discord = require('discord.js');
-
 /**
  *
  * @returns {string}

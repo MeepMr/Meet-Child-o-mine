@@ -1,9 +1,6 @@
-let Discord;
-Discord = require('discord.js');
-
 /**
  *
- * @param {Discord.Message} message
+ * @param {module:"discord.js".Message} message
  * @param {string[]} [args]
  * @returns {string}
  */
