@@ -1,4 +1,4 @@
-const registerChannels = require('./registeredChannels');
+const registerChannels = require('./registered-Channels');
 
 /**
  *
